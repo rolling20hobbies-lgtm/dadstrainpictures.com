@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dad's Train Pictures — Model Train Photography Prints</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1714;
+      --cream: #f5f0e8;
+      --warm-mid: #c8b89a;
+      --accent: #b85c2c;
+      --accent-light: #e8d5c0;
+      --steel: #4a5568;
+      --light-steel: #e8edf2;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(245, 240, 232, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200, 184, 154, 0.3);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); font-style: italic; }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--steel);
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-cta {
+      background: var(--ink);
+      color: var(--cream) !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 2px;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--accent) !important; color: var(--cream) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 5rem;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 5rem;
+      position: relative;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.4s;
+    }
+
+    .hero-title em {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--steel);
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.6s;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.8s;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--cream);
+      padding: 0.9rem 2rem;
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover { background: var(--ink); transform: translateY(-1px); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--warm-mid);
+      padding-bottom: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-secondary:hover { color: var(--accent); border-color: var(--accent); }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--accent-light);
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 1s;
+    }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--steel);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+
+    /* Hero right: photo grid */
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      background: var(--ink);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      height: 100%;
+      gap: 3px;
+    }
+
+    .hero-img {
+      background: var(--steel);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .hero-img:nth-child(1) { animation-delay: 0.3s; grid-row: span 2; }
+    .hero-img:nth-child(2) { animation-delay: 0.5s; }
+    .hero-img:nth-child(3) { animation-delay: 0.7s; }
+
+    /* Placeholder images using CSS art — replace src="" with your actual photos */
+    .hero-img::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #2a2420 0%, #3d3530 40%, #1a1714 100%);
+    }
+
+    .hero-img:nth-child(1)::before { background: linear-gradient(160deg, #1e2a35 0%, #2d3e4a 50%, #0f1820 100%); }
+    .hero-img:nth-child(2)::before { background: linear-gradient(145deg, #2a1f1a 0%, #3d2e22 60%, #1a1410 100%); }
+    .hero-img:nth-child(3)::before { background: linear-gradient(120deg, #1a2010 0%, #2a3520 60%, #141a0e 100%); }
+
+    /* Decorative "photo" overlays */
+    .hero-img::after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.5);
+      font-family: var(--font-body);
+    }
+
+    .img-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(245,240,232,0.12);
+      font-family: var(--font-display);
+      font-size: 5rem;
+      font-style: italic;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 1rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-track {
+      display: inline-flex;
+      animation: marquee 28s linear infinite;
+    }
+
+    .marquee-track span {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1rem;
+      padding: 0 2rem;
+      color: var(--warm-mid);
+    }
+
+    .marquee-track span.dot {
+      color: var(--accent);
+      font-style: normal;
+      font-family: var(--font-body);
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 6rem 5rem; }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── FEATURED PRINTS ── */
+    .prints-section { background: #fff; }
+
+    .prints-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+    }
+
+    .prints-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .print-card {
+      cursor: pointer;
+      group: true;
+    }
+
+    .print-thumb {
+      aspect-ratio: 4/5;
+      background: var(--light-steel);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      border-radius: 2px;
+    }
+
+    .print-thumb::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      transition: transform 0.5s ease;
+    }
+
+    .print-card:hover .print-thumb::before { transform: scale(1.04); }
+
+    .print-card:nth-child(1) .print-thumb::before { background: linear-gradient(170deg, #1a2530 0%, #2d4055 50%, #0d1820 100%); }
+    .print-card:nth-child(2) .print-thumb::before { background: linear-gradient(150deg, #251a10 0%, #40302a 50%, #180f08 100%); }
+    .print-card:nth-child(3) .print-thumb::before { background: linear-gradient(130deg, #101820 0%, #20303a 50%, #080f14 100%); }
+
+    .print-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--accent);
+      color: var(--cream);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.65rem;
+      border-radius: 1px;
+    }
+
+    .print-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.1);
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-style: italic;
+    }
+
+    .print-name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .print-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .print-edition { font-size: 0.78rem; color: var(--steel); letter-spacing: 0.05em; }
+
+    .print-price {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    /* ── PROCESS ── */
+    .process-section {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .process-section .section-label { color: var(--warm-mid); }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+
+    .process-step { position: relative; }
+
+    .process-num {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      color: rgba(200, 184, 154, 0.15);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .process-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--cream);
+    }
+
+    .process-desc { font-size: 0.88rem; color: var(--warm-mid); line-height: 1.65; }
+
+    /* ── ABOUT STRIP ── */
+    .about-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 0;
+    }
+
+    .about-image {
+      background: linear-gradient(150deg, #1e2a35, #2d3e4a, #0f1820);
+      min-height: 500px;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: 2.5rem;
+    }
+
+    .about-quote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.3rem;
+      color: rgba(245,240,232,0.7);
+      line-height: 1.5;
+      max-width: 340px;
+      border-left: 2px solid var(--accent);
+      padding-left: 1.25rem;
+    }
+
+    .about-content {
+      background: var(--accent-light);
+      padding: 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .about-content .section-label { color: var(--accent); }
+
+    .about-content p { color: var(--steel); margin-bottom: 1.25rem; font-size: 0.95rem; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-section { background: var(--cream); }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .testimonial-card {
+      background: #fff;
+      padding: 1.75rem;
+      border-radius: 2px;
+      border-left: 3px solid var(--accent);
+    }
+
+    .testimonial-text {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+      color: var(--ink);
+    }
+
+    .testimonial-author { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); }
+
+    /* ── NEWSLETTER ── */
+    .newsletter-section {
+      background: var(--ink);
+      color: var(--cream);
+      text-align: center;
+      padding: 5rem;
+    }
+
+    .newsletter-section .section-title { color: var(--cream); }
+
+    .newsletter-sub { color: var(--warm-mid); margin-bottom: 2rem; font-size: 0.95rem; }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 0.9rem 1.25rem;
+      border: 1px solid rgba(200,184,154,0.3);
+      background: rgba(255,255,255,0.06);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      outline: none;
+      border-radius: 2px 0 0 2px;
+    }
+
+    .newsletter-form input::placeholder { color: var(--warm-mid); opacity: 0.6; }
+
+    .newsletter-form button {
+      background: var(--accent);
+      color: var(--cream);
+      border: none;
+      padding: 0.9rem 1.5rem;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      cursor: pointer;
+      border-radius: 0 2px 2px 0;
+      transition: background 0.2s;
+    }
+
+    .newsletter-form button:hover { background: #c96b38; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111;
+      color: var(--warm-mid);
+      padding: 3rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--cream);
+    }
+
+    .footer-logo span { color: var(--accent); font-style: italic; }
+
+    .footer-links { display: flex; gap: 2rem; }
+
+    .footer-links a {
+      color: var(--warm-mid);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { min-height: 50vw; }
+      .hero-left { padding: 3rem 1.5rem; }
+      section { padding: 4rem 1.5rem; }
+      .prints-grid { grid-template-columns: 1fr 1fr; }
+      .process-grid { grid-template-columns: 1fr 1fr; }
+      .about-section { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVIGATION ── -->
+  <nav>
+    <a href="#" class="nav-logo">Dad's <span>Train Pictures</span></a>
+    <ul class="nav-links">
+      <li><a href="#prints">Gallery</a></li>
+      <li><a href="#prints">Shop</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#prints" class="nav-cta">Buy Prints</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero" style="padding:0;">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Model train photography prints</p>
+      <h1 class="hero-title">Dad's passion, <em>your walls</em></h1>
+      <p class="hero-desc">
+        Fine art prints of model railways — lovingly photographed by a lifelong 
+        enthusiast. Every locomotive, every layout, captured in stunning detail.
+      </p>
+      <div class="hero-actions">
+        <a href="#prints" class="btn-primary">Shop Prints</a>
+        <a href="#about" class="btn-secondary">About the photographer →</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">1820s</div>
+          <div class="stat-label">Earliest era covered</div>
+        </div>
+        <div>
+          <div class="stat-num">6+</div>
+          <div class="stat-label">Railway eras</div>
+        </div>
+        <div>
+          <div class="stat-num">Archival</div>
+          <div class="stat-label">Quality prints</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-grid">
+        <div class="hero-img" data-label="Steam era · 1940s">
+          <div class="img-overlay">I</div>
+        </div>
+        <div class="hero-img" data-label="Diesel era · 1950s">
+          <div class="img-overlay">II</div>
+        </div>
+        <div class="hero-img" data-label="Modern era">
+          <div class="img-overlay">III</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MARQUEE ── -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Steam Era</span><span class="dot">·</span>
+      <span>Early Diesel</span><span class="dot">·</span>
+      <span>Golden Age of Rail</span><span class="dot">·</span>
+      <span>Modern Electric</span><span class="dot">·</span>
+      <span>Narrow Gauge</span><span class="dot">·</span>
+      <span>Post-War Freight</span><span class="dot">·</span>
+      <span>1950s Streamliners</span><span class="dot">·</span>
+      <span>British Railways</span><span class="dot">·</span>
+      <span>American Railroads</span><span class="dot">·</span>
+      <span>Steam Era</span><span class="dot">·</span>
+      <span>Early Diesel</span><span class="dot">·</span>
+      <span>Golden Age of Rail</span><span class="dot">·</span>
+      <span>Modern Electric</span><span class="dot">·</span>
+      <span>Narrow Gauge</span><span class="dot">·</span>
+      <span>Post-War Freight</span><span class="dot">·</span>
+      <span>1950s Streamliners</span><span class="dot">·</span>
+      <span>British Railways</span><span class="dot">·</span>
+      <span>American Railroads</span><span class="dot">·</span>
+    </div>
+  </div>
+
+  <!-- ── FEATURED PRINTS ── -->
+  <section class="prints-section" id="prints">
+    <div class="prints-header">
+      <div>
+        <p class="section-label">Browse by era</p>
+        <h2 class="section-title">Featured prints</h2>
+      </div>
+      <a href="#" class="btn-secondary">View all eras →</a>
+    </div>
+
+    <div class="prints-grid">
+      <div class="print-card">
+        <div class="print-thumb">
+          <div class="print-placeholder">I</div>
+          <div class="print-badge">Steam era</div>
+        </div>
+        <p class="print-name">Black Five at the Platform</p>
+        <div class="print-meta">
+          <span class="print-edition">1940s steam · 12×16"</span>
+          <span class="print-price">$95</span>
+        </div>
+      </div>
+
+      <div class="print-card">
+        <div class="print-thumb">
+          <div class="print-placeholder">II</div>
+          <div class="print-badge">Diesel era</div>
+        </div>
+        <p class="print-name">EMD F7 Freight Run</p>
+        <div class="print-meta">
+          <span class="print-edition">1950s diesel · 16×20"</span>
+          <span class="print-price">$125</span>
+        </div>
+      </div>
+
+      <div class="print-card">
+        <div class="print-thumb">
+          <div class="print-placeholder">III</div>
+          <div class="print-badge">Modern era</div>
+        </div>
+        <p class="print-name">High-Speed Passing Shot</p>
+        <div class="print-meta">
+          <span class="print-edition">Contemporary · 12×16"</span>
+          <span class="print-price">$95</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROCESS ── -->
+  <section class="process-section">
+    <p class="section-label">How it works</p>
+    <h2 class="section-title" style="color: var(--cream);">From layout to your wall</h2>
+
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="process-num">01</div>
+        <h3 class="process-title">The shoot</h3>
+        <p class="process-desc">Each image is carefully lit and composed on the layout — sometimes over several hours — to capture the right mood and drama.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">02</div>
+        <h3 class="process-title">The edit</h3>
+        <p class="process-desc">Files are colour-graded and retouched to bring out every rivet and wisp of steam while preserving the fine art aesthetic.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">03</div>
+        <h3 class="process-title">The print</h3>
+        <p class="process-desc">Printed on 100% cotton archival paper with pigment inks rated for 100+ years. Each print is signed and numbered.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">04</div>
+        <h3 class="process-title">To your door</h3>
+        <p class="process-desc">Shipped flat in a rigid board mailer within 3–5 business days. Free shipping on orders over $75.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section class="about-section" id="about">
+    <div class="about-image">
+      <blockquote class="about-quote">
+        "There's something magical about getting down to eye level with a locomotive and seeing it the way it deserves to be seen."
+      </blockquote>
+    </div>
+    <div class="about-content">
+      <p class="section-label">About the photographer</p>
+      <h2 class="section-title">A lifelong love of trains</h2>
+      <p>
+        I've been building and photographing model railways for as long as I can 
+        remember. My collection spans every major era — from early steam in the 
+        1800s right through to modern high-speed electric trains.
+      </p>
+      <p>
+        Each print captures a different chapter in railway history. Whether you 
+        love the romance of steam, the boldness of 1950s diesels, or the sleek 
+        lines of contemporary rail, there's something here for every enthusiast.
+      </p>
+      <a href="#" class="btn-primary" style="align-self: flex-start; margin-top: 0.5rem;">Read my story</a>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ── -->
+  <section class="testimonials-section" id="contact">
+    <p class="section-label">Collector reviews</p>
+    <h2 class="section-title">What collectors say</h2>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-text">"The steam era prints are absolutely stunning. You can see every rivet on the boiler. Hanging in my study and it gets a comment from every visitor."</p>
+        <p class="testimonial-author">— Robert T., Collector, Ohio</p>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">"Bought the EMD F7 print for my dad — he grew up watching those diesels run through Indiana. He got emotional opening it. Worth every penny."</p>
+        <p class="testimonial-author">— Sarah M., Gift buyer, Illinois</p>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">"I own prints from three different eras now. The consistency of quality is remarkable, and each one tells a completely different story of rail history."</p>
+        <p class="testimonial-author">— James K., Repeat customer</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── NEWSLETTER ── -->
+  <section class="newsletter-section">
+    <p class="section-label" style="color: var(--warm-mid);">Stay in the loop</p>
+    <h2 class="section-title">New prints, first look</h2>
+    <p class="newsletter-sub">Join 800+ collectors who get early access to new editions before they go public.</p>
+    <div class="newsletter-form">
+      <input type="email" placeholder="your@email.com" aria-label="Email address">
+      <button type="submit">Subscribe</button>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-logo">Dad's <span>Train Pictures</span></div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="#">Shop</a>
+      <a href="#">Gallery</a>
+      <a href="#">About</a>
+      <a href="#">Shipping & returns</a>
+      <a href="#">Contact</a>
+    </nav>
+    <p style="font-size:0.75rem; color: rgba(200,184,154,0.5);">© 2026 Dad's Train Pictures. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
