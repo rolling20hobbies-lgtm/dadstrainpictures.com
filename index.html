@@ -353,12 +353,22 @@
       position: absolute;
       inset: 0;
       transition: transform 0.5s ease;
+      z-index: 0;
+    }
+
+    .print-thumb img {
+      position: relative;
+      z-index: 1;
+    }
+
+    .print-badge {
+      z-index: 2;
     }
 
     .print-card:hover .print-thumb::before { transform: scale(1.04); }
 
-    .print-card:nth-child(1) .print-thumb::before { background: linear-gradient(170deg, #1a2530 0%, #2d4055 50%, #0d1820 100%); }
-    .print-card:nth-child(2) .print-thumb::before { background: linear-gradient(150deg, #251a10 0%, #40302a 50%, #180f08 100%); }
+    .print-card:nth-child(1) .print-thumb::before { background: none; }
+    .print-card:nth-child(2) .print-thumb::before { background: none; }
     .print-card:nth-child(3) .print-thumb::before { background: linear-gradient(130deg, #101820 0%, #20303a 50%, #080f14 100%); }
 
     .print-badge {
